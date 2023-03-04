@@ -1,0 +1,14 @@
+{
+  "name": "nfl-season-pythagorean-win-loss",
+  "version": "1.0.0",
+  "description": "API to calculate an expected win-loss record based on points scored, points allowed, and games played",
+  "main": "pythagoreanWinLoss.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pythagorean"
+  ],
+  "author": "Jonah Cobbs",
+  "license": "ISC"
+}
