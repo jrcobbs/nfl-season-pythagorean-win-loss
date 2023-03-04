@@ -3,14 +3,20 @@ const bodyParser = require('body-parser');
 
 const app = express();
 const port = process.env.PORT || 3000;
+const EXPONENT = 2.37;
 
 app.use(bodyParser.json());
+
+function round(value, decimalPlace) {
+    const multiplier = Math.pow(10, decimalPlace || 0);
+    return Math.round(value * multiplier) / multiplier;
+}
 
 app.post('/calculate', (req, res) => {
   const { gamesPlayed, pointsFor, pointsAgainst } = req.body;
 
-  const pythagoreanWins = Math.round(Math.pow(pointsFor, 2.37) / (Math.pow(pointsFor, 2.37) + Math.pow(pointsAgainst, 2.37)) * gamesPlayed);
-  const pythagoreanLosses = gamesPlayed - pythagoreanWins;
+  const pythagoreanWins = round(Math.pow(pointsFor, EXPONENT) / (Math.pow(pointsFor, EXPONENT) + Math.pow(pointsAgainst, EXPONENT)) * gamesPlayed, 1);
+  const pythagoreanLosses = round(gamesPlayed - pythagoreanWins, 1);
 
   res.send(`Expected win-loss record: ${pythagoreanWins} - ${pythagoreanLosses}`);
 });
