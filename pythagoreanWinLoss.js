@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 app.post('/calculate', (req, res) => {
-  const { gamesPlayed, pointsFor, pointsAgainst } = req.body.Season;
+  const { gamesPlayed, pointsFor, pointsAgainst } = req.body;
 
   const pythagoreanWins = Math.round(Math.pow(pointsFor, 2.37) / (Math.pow(pointsFor, 2.37) + Math.pow(pointsAgainst, 2.37)) * gamesPlayed);
   const pythagoreanLosses = gamesPlayed - pythagoreanWins;
