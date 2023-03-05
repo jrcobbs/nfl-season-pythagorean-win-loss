@@ -18,7 +18,11 @@ app.post('/calculate', (req, res) => {
   const pythagoreanWins = round(Math.pow(pointsFor, EXPONENT) / (Math.pow(pointsFor, EXPONENT) + Math.pow(pointsAgainst, EXPONENT)) * gamesPlayed, 1);
   const pythagoreanLosses = round(gamesPlayed - pythagoreanWins, 1);
 
-  res.send(`Expected win-loss record: ${pythagoreanWins} - ${pythagoreanLosses}`);
+  let pythagoreanRecord = {
+    "expected-win-loss-record": `${pythagoreanWins} - ${pythagoreanLosses}`
+  }
+
+  res.send(pythagoreanRecord);
 });
 
 app.listen(port, () => {
